@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050b14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="JARVIS">
+<meta name="description" content="J.A.R.V.I.S. – persönliche Stark-inspirierte KI-Konsole">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>J.A.R.V.I.S. — Stark Interface</title>
+<style>
+:root{color-scheme:dark;--bg:#030914;--panel:#091827;--panel2:#0b2033;--line:#1a4964;--cyan:#55dcff;--blue:#188dff;--mint:#6dffd1;--muted:#8ba9bd;--text:#eaf8ff;--warn:#ffc56d}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 50% -10%,#103653 0%,#071625 38%,#030914 78%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:linear-gradient(#3ccaff20 1px,transparent 1px),linear-gradient(90deg,#3ccaff20 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px max(16px,env(safe-area-inset-left));border-bottom:1px solid #1a496488;background:#030b16eF;backdrop-filter:blur(16px)}
+.brand{font-size:20px;font-weight:900;letter-spacing:.19em}.brand span{color:var(--cyan)}.subtitle{font-size:9px;letter-spacing:.22em;color:var(--muted);margin-top:3px}.live{font-size:10px;letter-spacing:.14em;color:var(--mint);white-space:nowrap}.pulse{display:inline-block;width:7px;height:7px;background:var(--mint);border-radius:50%;margin-right:7px;box-shadow:0 0 13px var(--mint);animation:blink 1.8s infinite}
+main{width:min(1180px,94vw);margin:0 auto;padding:18px 0 calc(28px + env(safe-area-inset-bottom))}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:10px;letter-spacing:.14em}.clock{font-size:14px;color:var(--cyan);font-variant-numeric:tabular-nums}
+.layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.7fr);gap:14px;margin-top:14px}.panel{background:linear-gradient(145deg,#0d2134ed,#06111fee);border:1px solid #1a4964;border-radius:17px;box-shadow:0 12px 44px #0005,inset 0 1px #ffffff08;overflow:hidden}
+.hero{min-height:390px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px}.eyebrow,.section-title{font-size:10px;letter-spacing:.22em;color:var(--cyan);text-transform:uppercase}.reactor{width:min(43vw,205px);aspect-ratio:1;position:relative;display:grid;place-items:center;margin:17px 0;filter:drop-shadow(0 0 18px #27bfff55)}
+.ring{position:absolute;inset:0;border:1px solid #55dcff9c;border-radius:50%;animation:spin 19s linear infinite}.r2{inset:13px;border-style:dashed;animation-direction:reverse;animation-duration:27s}.r3{inset:29px;border-width:3px;border-color:#188dff99;box-shadow:inset 0 0 22px #188dff33,0 0 22px #188dff33}.arc{position:absolute;inset:47px;border-radius:50%;border:7px solid transparent;border-top-color:var(--cyan);border-bottom-color:var(--blue);animation:spin 8s linear infinite}.core{width:76px;height:76px;border-radius:50%;background:radial-gradient(circle,#fff 0%,#a7f4ff 15%,#188dff 42%,#0a3155 70%,#07111e 74%);box-shadow:0 0 22px var(--cyan),0 0 60px #188dffbb;animation:breathe 2.5s ease-in-out infinite}
+.greeting{font-size:clamp(23px,4vw,32px);font-weight:750}.hint{font-size:12px;color:var(--muted);margin-top:7px;max-width:460px;line-height:1.5}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;margin-top:22px}.metric{padding:10px 5px;background:#020b16a8;border:1px solid #1a496488;border-radius:10px}.metric b{display:block;font-size:12px;color:var(--cyan)}.metric small{display:block;font-size:9px;letter-spacing:.12em;color:var(--muted);margin-top:4px}
+.side{display:grid;gap:14px;align-content:start}.section{padding:16px}.section-title{margin:0 0 12px}.stat{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #1a496455;font-size:12px}.stat:first-of-type{border-top:0}.glyph{width:29px;height:29px;display:grid;place-items:center;border-radius:8px;background:#188dff20;color:var(--cyan);font-size:15px}.stat small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.tag{margin-left:auto;color:var(--mint);font-size:9px;letter-spacing:.1em}
+.chat{margin-top:14px;padding:16px}.chat-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.chat-head .section-title{margin:0}.connection{font-size:9px;color:var(--warn);letter-spacing:.12em}.messages{height:clamp(170px,28vh,280px);overflow:auto;display:flex;flex-direction:column;gap:9px;padding:12px 2px}.msg{max-width:min(88%,700px);padding:11px 13px;border-radius:12px;font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}.ai{align-self:flex-start;background:#188dff1c;border:1px solid #55dcff38}.user{align-self:flex-end;background:#6dffd116;border:1px solid #6dffd13a}.typing{color:var(--muted);font-style:italic}
+.composer{display:flex;gap:8px}.composer input{min-width:0;flex:1;padding:13px;background:#030e1b;border:1px solid #1a4964;border-radius:11px;color:var(--text);font:inherit;outline:none}.composer input:focus{border-color:var(--cyan);box-shadow:0 0 0 2px #55dcff18}button{min-height:43px;padding:0 14px;border:1px solid #55dcff70;border-radius:10px;background:linear-gradient(135deg,#0b5484,#0c2b49);color:white;font-weight:750;font-size:11px;letter-spacing:.06em;cursor:pointer}button:disabled{opacity:.5;cursor:wait}.secondary{background:#061725;border-color:#1a4964}.mic{width:45px;padding:0;font-size:17px}.tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.tools button{min-height:35px;font-size:9px}.note{margin-top:11px;color:#7893aa;font-size:10px;line-height:1.5}.foot{text-align:center;color:#627e93;font-size:9px;margin-top:15px;letter-spacing:.08em}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes breathe{50%{transform:scale(.94);filter:brightness(1.25)}}@keyframes blink{50%{opacity:.35}}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.hero{min-height:350px}.side{grid-template-columns:1fr 1fr}.side .panel:last-child{grid-column:1/-1}}
+@media(max-width:480px){header{padding:12px}.brand{font-size:17px}.live{font-size:9px}.side{grid-template-columns:1fr}.side .panel:last-child{grid-column:auto}.topbar{font-size:8px}.clock{font-size:12px}.composer{gap:6px}.composer input{padding:11px}.composer button{padding:0 10px}.metrics{gap:5px}.hero{padding:17px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+ <div><div class="brand">J.A.R.V.<span>I.S.</span></div><div class="subtitle">STARK INDUSTRIES · PERSONAL AI SYSTEM</div></div>
+ <div class="live"><i class="pulse"></i><span id="system-status">SYSTEM ONLINE</span></div>
+</header>
+<main>
+ <div class="topbar"><span>NEURAL INTERFACE · MARK IV</span><span class="clock" id="clock">--:--:--</span></div>
+ <div class="layout">
+  <section class="panel hero">
+   <div class="eyebrow">ARC REACTOR · STANDBY</div>
+   <div class="reactor" aria-label="Animierter Reaktor"><div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div><div class="arc"></div><div class="core"></div></div>
+   <div class="greeting" id="greeting">Guten Abend.</div>
+   <div class="hint" id="main-hint">Alle lokalen Systeme sind bereit. Ich warte auf deine Anweisung.</div>
+   <div class="metrics">
+    <div class="metric"><b id="date">--.--.----</b><small>DATUM</small></div>
+    <div class="metric"><b id="voice-metric">PRÜFUNG</b><small>SPRACHE</small></div>
+    <div class="metric"><b id="mode-metric">LOCAL</b><small>BETRIEBSMODUS</small></div>
+   </div>
+  </section>
+  <aside class="side">
+   <section class="panel section">
+    <h2 class="section-title">Systemdiagnose</h2>
+    <div class="stat"><div class="glyph">◈</div><div>Benutzeroberfläche<small>Alle Module geladen</small></div><span class="tag">ONLINE</span></div>
+    <div class="stat"><div class="glyph">⌁</div><div>Mikrofon<small id="voice-status">Wird geprüft …</small></div></div>
+    <div class="stat"><div class="glyph">◎</div><div>KI-Kanal<small id="ai-status">Backend noch nicht konfiguriert</small></div></div>
+    <div class="stat"><div class="glyph">▣</div><div>Offline-Modus<small>App-Shell wird zwischengespeichert</small></div></div>
+   </section>
+   <section class="panel section">
+    <h2 class="section-title">Kernmodule</h2>
+    <div class="stat"><div class="glyph">◷</div><div>Zeit & Datum<small>Lokale Systemzeit</small></div><span class="tag">AKTIV</span></div>
+    <div class="stat"><div class="glyph">⌘</div><div>Sprachsteuerung<small>Safari-Unterstützung erforderlich</small></div></div>
+    <div class="stat"><div class="glyph">↗</div><div>Webzugriff<small>Öffnet externe Seiten</small></div></div>
+   </section>
+  </aside>
+ </div>
+ <section class="panel chat">
+  <div class="chat-head"><h2 class="section-title">PRIVATER KOMMUNIKATIONSKANAL</h2><span class="connection" id="connection-label">LOCAL MODE</span></div>
+  <div class="messages" id="messages" aria-live="polite"><div class="msg ai">Guten Abend. JARVIS-Systeme sind einsatzbereit. Ich kann lokale Befehle ausführen. Sobald das sichere KI-Backend eingerichtet ist, kann ich auch frei mit dir sprechen.</div></div>
+  <form class="composer" id="form">
+   <input id="prompt" autocomplete="off" placeholder="Nachricht oder Befehl eingeben …" aria-label="Nachricht an JARVIS">
+   <button type="button" class="mic" id="mic" title="Spracheingabe" aria-label="Spracheingabe">🎙</button>
+   <button id="send" type="submit">SENDEN</button>
+  </form>
+  <div class="tools">
+   <button type="button" class="secondary" id="speak-toggle">SPRACHAUSGABE: AN</button>
+   <button type="button" class="secondary" id="clear">CHAT LEEREN</button>
+   <button type="button" class="secondary" id="help">BEFEHLE</button>
+  </div>
+  <div class="note">Datenschutz: Der Chat wird in dieser Version nicht dauerhaft auf einem Server gespeichert. Für freie KI-Antworten muss die Backend-Adresse in der Konfiguration gesetzt werden. Der geheime API-Schlüssel gehört ausschließlich in die Serverumgebung – niemals in diese Website.</div>
+ </section>
+ <div class="foot">J.A.R.V.I.S. · PERSONAL ASSISTANT INTERFACE · BUILT FOR IPAD</div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+// Nach dem Einrichten des Cloudflare Workers hier dessen HTTPS-Adresse eintragen.
+// Beispiel: https://jarvis-api.DEIN-NAME.workers.dev
+const API_URL = "";
+let speechOutput = true;
+let busy = false;
+let conversation = [];
+const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+function updateClock(){
+ const now=new Date();
+ $('#clock').textContent=now.toLocaleTimeString('de-DE');
+ $('#date').textContent=now.toLocaleDateString('de-DE');
+ const h=now.getHours();
+ $('#greeting').textContent=h<11?'Guten Morgen.':h<18?'Guten Tag.':'Guten Abend.';
+}
+updateClock(); setInterval(updateClock,1000);
+$('#voice-status').textContent=Recognition?'Verfügbar – Freigabe nötig':'Nicht unterstützt – Tastatur nutzen';
+$('#voice-metric').textContent=Recognition?'BEREIT':'TASTATUR';
+$('#ai-status').textContent=API_URL?'Backend-Adresse gesetzt':'Backend noch nicht konfiguriert';
+$('#mode-metric').textContent=API_URL?'HYBRID':'LOCAL';
+$('#connection-label').textContent=API_URL?'AI CHANNEL CONFIGURED':'LOCAL MODE';
+
+function addMessage(text,who='ai',extra=''){
+ const n=document.createElement('div');n.className='msg '+who+(extra?' '+extra:'');n.textContent=text;
+ $('#messages').appendChild(n);$('#messages').scrollTop=$('#messages').scrollHeight;return n;
+}
+function speak(text){
+ if(!speechOutput||!('speechSynthesis'in window))return;
+ speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='de-DE';u.rate=.96;speechSynthesis.speak(u);
+}
+function reply(text){addMessage(text);speak(text);$('#main-hint').textContent='Anfrage verarbeitet. Ich bin bereit.';}
+function helpText(){return 'Lokale Funktionen:\n• „Wie spät ist es?“ – Uhrzeit\n• „Welches Datum ist heute?“ – Datum\n• „Öffne YouTube/Google/Wikipedia“ – Webseite öffnen\n• „Systemstatus“ – Diagnose\n• „Hilfe“ – Befehlsübersicht\n\nFreie KI-Unterhaltung funktioniert, sobald das sichere Backend eingerichtet und API_URL gesetzt ist.';}
+function localCommand(raw){
+ const q=raw.toLowerCase().trim();
+ if(/^(hilfe|befehle|was kannst du)/.test(q))return helpText();
+ if(/(wie spät|uhrzeit|wie viel uhr|zeit)/.test(q))return 'Es ist '+new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})+' Uhr.';
+ if(/(welches datum|heute für ein datum|datum|welcher tag)/.test(q))return 'Heute ist '+new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+'.';
+ if(/(wie heißt du|wer bist du|dein name)/.test(q))return 'Ich bin J.A.R.V.I.S., deine persönliche, Stark-inspirierte Assistenzoberfläche.';
+ if(/(systemstatus|status|system check)/.test(q))return 'Diagnose: Oberfläche aktiv. Uhr und Datum aktiv. Spracheingabe '+(Recognition?'vom Browser unterstützt':'nicht unterstützt')+'. Sprachausgabe '+('speechSynthesis'in window?'verfügbar':'nicht verfügbar')+'. KI-Backend '+(API_URL?'konfiguriert':'noch nicht verbunden')+'.';
+ const sites=[['youtube|yt','https://www.youtube.com','YouTube'],['google','https://www.google.com','Google'],['wikipedia','https://de.wikipedia.org','Wikipedia']];
+ for(const [term,url,name] of sites){if(new RegExp('(öffne|starte).*('+term+')').test(q)){window.open(url,'_blank','noopener');return 'Ich öffne '+name+' in einem neuen Tab.';}}
+ if(/(hallo|hey|guten morgen|guten tag|guten abend)/.test(q))return 'Guten Tag. Alle lokalen Systeme sind bereit. Was kann ich für dich tun?';
+ if(/(danke|vielen dank)/.test(q))return 'Gern geschehen. Ich stehe bereit.';
+ return null;
+}
+async function askAI(text){
+ if(!API_URL) return null;
+ const response=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,history:conversation.slice(-12)})});
+ if(!response.ok){let detail='HTTP '+response.status;try{const e=await response.json();detail=e.error||detail;}catch{}throw new Error(detail);}
+ const data=await response.json();if(!data.reply)throw new Error('Leere Antwort vom Backend.');
+ conversation.push({role:'user',content:text},{role:'assistant',content:data.reply});
+ return data.reply;
+}
+$('#form').addEventListener('submit',async e=>{
+ e.preventDefault();if(busy)return;
+ const input=$('#prompt'),text=input.value.trim();if(!text)return;
+ input.value='';addMessage(text,'user');
+ const local=localCommand(text);
+ if(local){reply(local);return;}
+ if(!API_URL){reply('Dieser freie KI-Befehl benötigt noch die Backend-Verbindung. Die lokalen Befehle funktionieren bereits.');return;}
+ busy=true;$('#send').disabled=true;$('#send').textContent='DENKE …';$('#system-status').textContent='PROCESSING';$('#main-hint').textContent='KI-Anfrage wird verarbeitet …';
+ const pending=addMessage('Verarbeite Anfrage …','ai','typing');
+ try{const answer=await askAI(text);pending.remove();reply(answer);}
+ catch(err){pending.remove();reply('Die KI-Verbindung ist fehlgeschlagen: '+err.message+'. Bitte Backend-Adresse und Serverstatus prüfen.');}
+ finally{busy=false;$('#send').disabled=false;$('#send').textContent='SENDEN';$('#system-status').textContent='SYSTEM ONLINE';}
+});
+$('#mic').addEventListener('click',()=>{
+ if(!Recognition){reply('Spracheingabe wird in diesem Browser nicht unterstützt. Bitte verwende die Tastatur.');return;}
+ const rec=new Recognition();rec.lang='de-DE';rec.interimResults=false;rec.maxAlternatives=1;$('#voice-status').textContent='Hört zu …';
+ rec.onresult=e=>{$('#prompt').value=e.results[0][0].transcript;$('#voice-status').textContent='Bereit';$('#form').requestSubmit();};
+ rec.onerror=()=>{$('#voice-status').textContent='Mikrofonfreigabe prüfen';reply('Ich konnte das Mikrofon nicht verwenden. Bitte prüfe die Safari-Freigabe.');};
+ rec.onend=()=>{if($('#voice-status').textContent==='Hört zu …')$('#voice-status').textContent='Bereit';};
+ try{rec.start();}catch{reply('Spracheingabe konnte nicht gestartet werden.');}
+});
+$('#speak-toggle').addEventListener('click',()=>{
+ speechOutput=!speechOutput;$('#speak-toggle').textContent='SPRACHAUSGABE: '+(speechOutput?'AN':'AUS');
+ if(!speechOutput&&'speechSynthesis'in window)speechSynthesis.cancel();if(speechOutput)speak('Sprachausgabe aktiviert.');
+});
+$('#clear').addEventListener('click',()=>{$('#messages').replaceChildren();conversation=[];reply('Unterhaltung zurückgesetzt. JARVIS ist bereit.');});
+$('#help').addEventListener('click',()=>reply(helpText()));
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script>
+</body></html>

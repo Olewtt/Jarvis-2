@@ -1,0 +1,19 @@
+{
+  "name": "J.A.R.V.I.S. Personal Assistant",
+  "short_name": "JARVIS",
+  "description": "Stark-inspirierte persönliche KI-Konsole für iPad und Web",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#030914",
+  "theme_color": "#050b14",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
